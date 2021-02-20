@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { InicioComponent } from './inicio.component';
 import { InicioRoutingModule } from './inicio-routing.module';
@@ -12,11 +13,12 @@ import { InicioRoutingModule } from './inicio-routing.module';
   declarations: [InicioComponent],
   imports: [
     CommonModule,
-    InicioRoutingModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatSelectModule,
     MatGridListModule,
     FontAwesomeModule,
+    InicioRoutingModule,
   ],
 })
 export class InicioModule {}

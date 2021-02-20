@@ -7,6 +7,10 @@ const rutas: Routes = [
     loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule)
   },
   {
+    path: 'jugar',
+    loadChildren: () => import('./jugar/jugar.module').then(m => m.JugarModule)
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/inicio'
