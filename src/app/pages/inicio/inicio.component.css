@@ -1,0 +1,25 @@
+.card-container {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-card-content {
+  padding-left: 10%;
+  padding-top: 20px;
+  padding-right: 10%;
+}
+
+@media (max-width: 650px) {
+  .card-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+
