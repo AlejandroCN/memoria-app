@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons/faSyncAlt';
 
 @Component({
@@ -7,7 +7,7 @@ import { faSyncAlt } from '@fortawesome/free-solid-svg-icons/faSyncAlt';
   styleUrls: ['./game-card.component.css']
 })
 export class GameCardComponent implements OnInit {
-
+  @Input() public urlImagen: string;
   public faSyncAlt = faSyncAlt;
 
   constructor() { }

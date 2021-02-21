@@ -1,7 +1,9 @@
 <div class="container">
-  <div *ngFor="let row of rowsArray" class="row">
-    <div class="col-sm" *ngFor="let col of colsArray">
-      <app-game-card></app-game-card>
+  <div *ngFor="let row of rowsArray; let i=index" class="row">
+    <div class="col-sm" *ngFor="let col of colsArray; let j=index">
+      <app-game-card
+        [urlImagen]="imagenes[(i * colsArray.length + j)]"
+      ></app-game-card>
     </div>
   </div>
 </div>
