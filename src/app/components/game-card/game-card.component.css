@@ -1,0 +1,18 @@
+.card {
+  border-radius: 0 !important;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: ease-in 0.2s;
+  background-color: #cce5ff;
+  cursor: pointer;
+}
+
+.card div.image-container {
+  height: 70px;
+}
+
+img {
+  height: 70px;
+}

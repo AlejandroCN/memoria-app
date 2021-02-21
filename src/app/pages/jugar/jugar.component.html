@@ -1,1 +1,7 @@
-<p>jugar works!</p>
+<div class="container">
+  <div *ngFor="let row of rowsArray" class="row">
+    <div class="col-sm" *ngFor="let col of colsArray">
+      <app-game-card></app-game-card>
+    </div>
+  </div>
+</div>

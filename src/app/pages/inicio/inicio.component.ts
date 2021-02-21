@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay';
 
 import { ConfigService } from 'src/app/services/config.service';
+import { GameService } from 'src/app/services/game.service';
+
+import { GameOptions } from 'src/app/models/game-options.model';
 
 @Component({
   selector: 'app-inicio',
@@ -16,7 +19,11 @@ export class InicioComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private configService: ConfigService, private router: Router) {
+  constructor(
+    private configService: ConfigService,
+    private gameService: GameService,
+    private router: Router
+  ) {
     this.configurarForm();
   }
 
@@ -45,7 +52,17 @@ export class InicioComponent implements OnInit {
   public jugar(): void {
     this.form.markAllAsTouched();
     if (this.form.valid) {
+      this.writeOptions();
       this.router.navigateByUrl('/jugar');
     }
+  }
+
+  private writeOptions(): void {
+    const options: GameOptions = {
+      numRenglones: Number(this.form.get('rows').value),
+      numColumnas: Number(this.form.get('cols').value),
+    };
+
+    this.gameService.gameOpts = options;
   }
 }
