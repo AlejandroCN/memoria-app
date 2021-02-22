@@ -158,11 +158,12 @@ export class JugarComponent implements OnInit {
     record.fecha = new Date();
     record.tiempo = this.tiempo;
 
-    this.recordsService.save(record).subscribe(() => {
+    this.recordsService.save(record).then(() => {
       Swal.fire('Felicidades!', 'Su puntaje se agregó al ranking global', 'success');
       this.router.navigateByUrl('/ranking');
-    }, err => {
-      Swal.fire('Algo salió muy mal!', err.error.mensaje, 'error');
+    }).catch(err => {
+      Swal.fire('Algo salió mal!', 'No fue posible agregar su puntaje al ranking', 'error');
+      console.log(err);
     });
   }
 }
