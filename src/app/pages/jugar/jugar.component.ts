@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { GameService } from 'src/app/services/game.service';
 import { ConfigService } from 'src/app/services/config.service';
+import { RecordsService } from 'src/app/services/records.service';
+
 import { GameCard } from 'src/app/models/game-card.model';
+import { Record } from 'src/app/models/record.model';
 
 @Component({
   selector: 'app-jugar',
@@ -22,7 +27,9 @@ export class JugarComponent implements OnInit {
 
   constructor(
     private gameService: GameService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private recordsService: RecordsService,
+    private router: Router
   ) {
     this.imagenes = [];
     this.tiempo = 0;
@@ -118,5 +125,44 @@ export class JugarComponent implements OnInit {
 
   private gameOver() {
     clearInterval(this.handlerInterval);
+
+    setTimeout(() => {
+      Swal.fire({
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        title: 'Ingresa tu nickname',
+        input: 'text',
+        showCancelButton: false,
+        confirmButtonText: 'Continuar',
+        width: 600,
+        padding: '3em',
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url(
+          "https://www.animatedimages.org/data/media/296/animated-festivity-and-celebration-image-0218.gif")
+          left top
+          no-repeat
+        `,
+      }).then((result) => {
+        if (result.value) {
+          this.registrarPuntaje(result.value);
+        }
+      });
+    }, 1000);
+  }
+
+  private registrarPuntaje(nick: string): void {
+    const record: Record = new Record();
+    record.nickname = nick;
+    record.totalIntentos = this.totalIntentos;
+    record.fecha = new Date();
+    record.tiempo = this.tiempo;
+
+    this.recordsService.save(record).subscribe(() => {
+      Swal.fire('Felicidades!', 'Su puntaje se agregó al ranking global', 'success');
+      this.router.navigateByUrl('/ranking');
+    }, err => {
+      Swal.fire('Algo salió muy mal!', err.error.mensaje, 'error');
+    });
   }
 }

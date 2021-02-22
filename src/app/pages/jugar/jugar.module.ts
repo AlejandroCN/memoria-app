@@ -7,6 +7,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { JugarComponent } from './jugar.component';
 import { JugarRoutingModule } from './jugar-routing.module';
 import { GameCardModule } from 'src/app/components/game-card/game-card.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [JugarComponent],
@@ -17,6 +18,7 @@ import { GameCardModule } from 'src/app/components/game-card/game-card.module';
     MatBadgeModule,
     JugarRoutingModule,
     GameCardModule,
+    PipesModule,
   ],
 })
 export class JugarModule {}
