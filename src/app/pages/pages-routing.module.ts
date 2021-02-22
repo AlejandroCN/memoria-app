@@ -15,6 +15,11 @@ const rutas: Routes = [
     canActivate: [TableroGuard],
   },
   {
+    path: 'ranking',
+    loadChildren: () =>
+      import('./ranking/ranking.module').then((m) => m.RankingModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/inicio',

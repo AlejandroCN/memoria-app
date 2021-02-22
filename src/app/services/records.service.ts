@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentReference, QuerySnapshot } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  DocumentReference,
+  QuerySnapshot,
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import { Record } from '../models/record.model';
@@ -8,7 +12,6 @@ import { Record } from '../models/record.model';
   providedIn: 'root',
 })
 export class RecordsService {
-
   constructor(private firestore: AngularFirestore) {}
 
   public save(record: Record): Promise<DocumentReference<any>> {
@@ -16,12 +19,15 @@ export class RecordsService {
       fecha: record.fecha,
       tiempo: record.tiempo,
       totalIntentos: record.totalIntentos,
-      nickname: record.nickname
+      nickname: record.nickname,
     });
   }
 
   public findAll(): Observable<QuerySnapshot<any>> {
-    return this.firestore.collection('records').get();
+    return this.firestore
+      .collection('records', (ref) =>
+        ref.orderBy('tiempo').orderBy('totalIntentos')
+      )
+      .get();
   }
-
 }
