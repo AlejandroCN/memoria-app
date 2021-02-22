@@ -17,6 +17,8 @@ export class InicioComponent implements OnInit {
   public faPlay = faPlay;
   public gameConfig: any;
 
+  public colOptions: number[];
+  public rowOptions: number[];
   public form: FormGroup;
 
   constructor(
@@ -35,6 +37,8 @@ export class InicioComponent implements OnInit {
     this.configService.getConfig().then(
       (config) => {
         this.gameConfig = config;
+        this.colOptions = this.gameConfig.colOptions;
+        this.rowOptions = this.gameConfig.rowOptions;
       },
       (err) => {
         console.log(err);
@@ -47,6 +51,20 @@ export class InicioComponent implements OnInit {
       rows: new FormControl('', Validators.required),
       cols: new FormControl('', Validators.required),
     });
+  }
+
+  public changeRenglones(): void {
+    const rows = Number(this.form.get('rows').value);
+    this.colOptions = this.gameConfig.colOptions.filter(
+      (colOption: number) => (colOption * rows) % 2 === 0
+    );
+  }
+  
+  public changeColumnas(): void {
+    const cols = Number(this.form.get('cols').value);
+    this.rowOptions = this.gameConfig.rowOptions.filter(
+      (rowOption: number) => (rowOption * cols) % 2 === 0
+    );
   }
 
   public jugar(): void {

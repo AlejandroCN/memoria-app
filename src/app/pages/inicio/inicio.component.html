@@ -12,9 +12,9 @@
           <div class="col-sm-6 form-group">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>Renglones</mat-label>
-              <mat-select formControlName="rows">
+              <mat-select formControlName="rows" (selectionChange)="changeRenglones()">
                 <mat-option
-                  *ngFor="let opt of gameConfig?.rowOptions"
+                  *ngFor="let opt of rowOptions"
                   [value]="opt"
                   >{{opt}}</mat-option
                 >
@@ -30,9 +30,9 @@
           <div class="col-sm-6 form-group">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>Columnas</mat-label>
-              <mat-select formControlName="cols">
+              <mat-select formControlName="cols" (selectionChange)="changeColumnas()">
                 <mat-option
-                  *ngFor="let opt of gameConfig?.colOptions"
+                  *ngFor="let opt of colOptions"
                   [value]="opt"
                   >{{opt}}</mat-option
                 >
