@@ -8,12 +8,14 @@
 html,
 body {
   height: 100%;
-  background: rgb(147, 168, 168);
+  background: rgb(3, 10, 54);
   background: linear-gradient(
     0deg,
-    rgba(147, 168, 168, 1) 0%,
-    rgba(26, 27, 29, 1) 100%
+    rgba(3, 10, 54, 1) 0%,
+    rgba(82, 96, 255, 1) 100%
   );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body {

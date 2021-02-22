@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { GameService } from 'src/app/services/game.service';
 import { ConfigService } from 'src/app/services/config.service';
+import { GameCard } from 'src/app/models/game-card.model';
 
 @Component({
   selector: 'app-jugar',
@@ -12,13 +13,23 @@ export class JugarComponent implements OnInit {
   public rowsArray: any[];
   public colsArray: any[];
 
-  public imagenes: string[];
+  public imagenes: GameCard[];
+  public imagenSeleccionada: GameCard;
+
+  public handlerInterval: any;
+  public tiempo: number;
+  public totalIntentos: number;
 
   constructor(
     private gameService: GameService,
     private configService: ConfigService
   ) {
     this.imagenes = [];
+    this.tiempo = 0;
+    this.totalIntentos = 0;
+    this.handlerInterval = setInterval(() => {
+      this.tiempo += 1;
+    }, 1000);
   }
 
   ngOnInit(): void {
@@ -37,7 +48,9 @@ export class JugarComponent implements OnInit {
       const numImagenRandom = Math.floor(
         Math.random() * gameOpts.totalImagenesDisponibles
       );
-      if (this.imagenes.indexOf(`${numImagenRandom.toString()}.png`) >= 0) {
+      if (
+        this.imagenes.find((img) => img?.imagen === `${numImagenRandom}.png`)
+      ) {
         continue;
       }
 
@@ -51,9 +64,59 @@ export class JugarComponent implements OnInit {
         posicionRandom1 = Math.floor(Math.random() * totalImagenesTablero);
         posicionRandom2 = Math.floor(Math.random() * totalImagenesTablero);
       }
-      this.imagenes[posicionRandom1] = `${numImagenRandom.toString()}.png`;
-      this.imagenes[posicionRandom2] = `${numImagenRandom.toString()}.png`;
+      const card1 = new GameCard(posicionRandom1, `${numImagenRandom}.png`);
+      const card2 = new GameCard(posicionRandom2, `${numImagenRandom}.png`);
+      this.imagenes[posicionRandom1] = card1;
+      this.imagenes[posicionRandom2] = card2;
       contadorImagenes += 2;
     }
+  }
+
+  public selectCard(gameCard: GameCard): void {
+    const gameCardEnArray = this.imagenes.find(
+      (gc) => gc.arrayIndex === gameCard.arrayIndex
+    );
+    if (!this.imagenSeleccionada) {
+      this.imagenSeleccionada = gameCard;
+    } else if (!this.imagenSeleccionada.error) {
+      if (this.imagenSeleccionada.imagen === gameCard.imagen) {
+        this.gameAssert(gameCardEnArray);
+      } else {
+        this.gameFail(gameCardEnArray);
+      }
+      this.totalIntentos += 1;
+    } else {
+      gameCardEnArray.shown = false;
+    }
+  }
+
+  private gameAssert(gameCard: GameCard): void {
+    this.imagenSeleccionada.success = true;
+    gameCard.success = true;
+    this.imagenSeleccionada = null;
+
+    if (this.isGameOver()) {
+      this.gameOver();
+    }
+  }
+
+  private gameFail(gameCard: GameCard): void {
+    gameCard.error = true;
+    this.imagenSeleccionada.error = true;
+    setTimeout(() => {
+      this.imagenSeleccionada.shown = false;
+      gameCard.shown = false;
+      this.imagenSeleccionada.error = false;
+      gameCard.error = false;
+      this.imagenSeleccionada = null;
+    }, 2000);
+  }
+
+  private isGameOver(): boolean {
+    return this.imagenes.find((gc) => !gc.success) ? false : true;
+  }
+
+  private gameOver() {
+    clearInterval(this.handlerInterval);
   }
 }

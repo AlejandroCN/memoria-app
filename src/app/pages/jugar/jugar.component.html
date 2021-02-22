@@ -1,8 +1,17 @@
-<div class="container">
+<div class="container mb-5">
+    <mat-card class="w-100 mb-2">
+      <mat-card-content>
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip color="primary" selected class="mr-3">{{ tiempo }} s</mat-chip>
+          <mat-chip color="warn" selected>Intentos: {{ totalIntentos }}</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
   <div *ngFor="let row of rowsArray; let i=index" class="row">
     <div class="col-sm" *ngFor="let col of colsArray; let j=index">
       <app-game-card
-        [urlImagen]="imagenes[(i * colsArray.length + j)]"
+        [gameCard]="imagenes[(i * colsArray.length + j)]"
+        (clickCard)="selectCard($event)"
       ></app-game-card>
     </div>
   </div>

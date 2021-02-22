@@ -2,15 +2,17 @@
   border-radius: 0 !important;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  transition: ease-in 0.2s;
+.card:hover:not(.alert-success, .alert-warning, .alert-danger) {
   background-color: #cce5ff;
   cursor: pointer;
 }
 
 .card div.image-container {
   height: 70px;
+}
+
+.card.alert-success {
+  cursor: default;
 }
 
 img {

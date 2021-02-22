@@ -1,10 +1,22 @@
-<div class="card alert-danger">
+<div
+  class="card animate__animated"
+  [ngClass]="gameCard?.success
+              ? 'animate__tada alert-success'
+              : gameCard?.error
+              ? 'animate__shakeX alert-danger'
+              : gameCard?.shown
+              ? 'animate__flipInY alert-warning'
+              : !gameCard?.shown
+              ? 'animate__flipInX alert-secondary'
+              : 'alert-warning'"
+  (click)="selectCard()"
+>
   <div class="image-container d-flex justify-content-center align-items-center">
     <img
-      *ngIf="urlImagen"
-      [src]="'assets/images/tarjetas/' + urlImagen"
+      *ngIf="gameCard?.shown"
+      [src]="'assets/images/tarjetas/' + gameCard.imagen"
       alt="card-image"
-      />
-    <!--<fa-icon [icon]="faSyncAlt" size="3x"></fa-icon> -->
+    />
+    <fa-icon *ngIf="!gameCard?.shown" [icon]="faSyncAlt" size="3x"></fa-icon>
   </div>
 </div>
