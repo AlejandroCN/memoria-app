@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { GameService } from 'src/app/services/game.service';
@@ -8,6 +8,13 @@ import { RecordsService } from 'src/app/services/records.service';
 
 import { GameCard } from 'src/app/models/game-card.model';
 import { Record } from 'src/app/models/record.model';
+
+const customSwal = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-action',
+  },
+  buttonsStyling: false,
+});
 
 @Component({
   selector: 'app-jugar',
@@ -104,6 +111,7 @@ export class JugarComponent implements OnInit {
 
     if (this.isGameOver()) {
       this.gameOver();
+      this.gameService.clearOpts();
     }
   }
 
@@ -127,27 +135,32 @@ export class JugarComponent implements OnInit {
     clearInterval(this.handlerInterval);
 
     setTimeout(() => {
-      Swal.fire({
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-        title: 'Ingresa tu nickname',
-        input: 'text',
-        showCancelButton: false,
-        confirmButtonText: 'Continuar',
-        width: 600,
-        padding: '3em',
-        backdrop: `
+      customSwal
+        .fire({
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          title: 'Ingresa tu nickname',
+          input: 'text',
+          showCancelButton: false,
+          confirmButtonText: 'Continuar',
+          width: 600,
+          padding: '3em',
+          backdrop: `
           rgba(0,0,123,0.4)
           url(
           "https://www.animatedimages.org/data/media/296/animated-festivity-and-celebration-image-0218.gif")
           left top
           no-repeat
         `,
-      }).then((result) => {
-        if (result.value) {
-          this.registrarPuntaje(result.value);
-        }
-      });
+        })
+        .then((result) => {
+          if (result.value) {
+            this.registrarPuntaje(result.value);
+          } else {
+            customSwal.fire('Gracias Por Jugar!');
+            this.router.navigateByUrl('/ranking');
+          }
+        });
     }, 1000);
   }
 
@@ -158,12 +171,23 @@ export class JugarComponent implements OnInit {
     record.fecha = new Date();
     record.tiempo = this.tiempo;
 
-    this.recordsService.save(record).then(() => {
-      Swal.fire('Felicidades!', 'Su puntaje se agregó al ranking global', 'success');
-      this.router.navigateByUrl('/ranking');
-    }).catch(err => {
-      Swal.fire('Algo salió mal!', 'No fue posible agregar su puntaje al ranking', 'error');
-      console.log(err);
-    });
+    this.recordsService
+      .save(record)
+      .then(() => {
+        Swal.fire(
+          'Felicidades!',
+          'Su puntaje se agregó al ranking global',
+          'success'
+        );
+        this.router.navigateByUrl('/ranking');
+      })
+      .catch((err) => {
+        Swal.fire(
+          'Algo salió mal!',
+          'No fue posible agregar su puntaje al ranking',
+          'error'
+        );
+        console.log(err);
+      });
   }
 }

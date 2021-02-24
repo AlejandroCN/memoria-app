@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 * {
   margin: 0;
   padding: 0;
@@ -8,11 +7,11 @@
 html,
 body {
   height: 100%;
-  background: rgb(3, 10, 54);
+  background: rgb(238, 174, 202);
   background: linear-gradient(
-    0deg,
-    rgba(3, 10, 54, 1) 0%,
-    rgba(82, 96, 255, 1) 100%
+    8deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
   );
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -22,3 +21,12 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+button.btn.btn-action {
+  background-color: #AFEEE8;
+}
+
+.mat-card {
+  background-color: #FDF4F7;
+}
+

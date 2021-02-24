@@ -1,11 +1,13 @@
 <div class="container mb-5">
   <mat-card class="w-100 mb-2">
     <mat-card-content class="d-flex justify-content-center">
-      <mat-chip-list aria-label="Fish selection">
-        <mat-chip color="primary" selected class="mr-3"
+      <mat-chip-list>
+        <mat-chip class="chip-tiempo mr-3" selected
           >{{ tiempo | formatSeconds }}</mat-chip
         >
-        <mat-chip color="warn" selected>Intentos: {{ totalIntentos }}</mat-chip>
+        <mat-chip class="chip-intentos" selected
+          >Intentos: {{ totalIntentos }}</mat-chip
+        >
       </mat-chip-list>
     </mat-card-content>
   </mat-card>

@@ -1,15 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
 nav {
-  margin-top: 20px;
-  font-size: 4em;
-  font-family: "Lobster", cursive;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  width: 100;
-  color: #f4f5f8;
+  font-size: 3em;
+  font-family: "Lobster", cursive;
+  height: 200px;
+  width: 100%;
+  color: #FBEEF4;
 }
 
 nav img {
@@ -17,10 +16,10 @@ nav img {
   width: 100px;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 450px) {
   nav {
     margin-top: 0;
-    font-size: 2em;
+    font-size: 34px;
   }
 
   nav img {

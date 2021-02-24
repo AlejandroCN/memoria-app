@@ -1,13 +1,13 @@
 <div
   class="card animate__animated"
   [ngClass]="gameCard?.success
-              ? 'animate__tada alert-success'
+              ? 'animate__tada card-success'
               : gameCard?.error
-              ? 'animate__shakeX alert-danger'
+              ? 'animate__shakeX card-danger'
               : gameCard?.shown
-              ? 'animate__flipInY alert-warning'
+              ? 'animate__flipInY card-shown'
               : !gameCard?.shown
-              ? 'animate__flipInX alert-secondary'
+              ? 'animate__flipInX card-hidden'
               : 'alert-warning'"
   (click)="selectCard()"
 >

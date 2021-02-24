@@ -23,4 +23,10 @@ export class GameService {
     this._gameOpts = gameOpts;
     localStorage.setItem('options', JSON.stringify(gameOpts));
   }
+
+  public clearOpts(): void {
+    this._gameOpts = null;
+    localStorage.clear();
+  }
+
 }

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { faGamepad } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  public faGamepad = faGamepad;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -2,8 +2,8 @@
   border-radius: 0 !important;
 }
 
-.card:hover:not(.alert-success, .alert-warning, .alert-danger) {
-  background-color: #cce5ff;
+.card:hover:not(.card-success, .card-shown, .card-danger) {
+  background-color: #EAEEAF;
   cursor: pointer;
 }
 
@@ -11,8 +11,21 @@
   height: 70px;
 }
 
-.card.alert-success {
-  cursor: default;
+.card-hidden {
+  background-color: #EED3AF;
+}
+
+.card-success {
+  background-color: #AFEEBE;
+  cursor: normal;
+}
+
+.card-danger {
+  background-color: #E47EAA;
+}
+
+.card-shown {
+  background-color: #AFEEE8;
 }
 
 img {

@@ -2,9 +2,13 @@
   padding: 0 !important;
 }
 
-div.container {
-  margin-top: 3%;
+.mat-chip.mat-standard-chip.mat-chip-selected.chip-tiempo {
+  background-color: #E8AFEE !important;
+  color: #000 !important;
 }
 
-
+.mat-chip.mat-standard-chip.mat-chip-selected.chip-intentos {
+  background-color: #CAEEAF !important;
+  color: #000 !important;
+}
 
