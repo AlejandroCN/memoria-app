@@ -1,27 +1,40 @@
-# MemoriaApp
+# Memoria App
+Memoria App es un juego de memoria en línea, no es necesario registrarse para poder jugar.
+Existen diferentes tamaños de tablero según la dificultad deseada.
+Al terminar la partida ingresa un nickname para agregar tus datos (tiempo e intentos) al ranking global!
+## Comenzando 🚀
+La aplicación usa el servicio firestore de Firebase para almacenar los records de los jugadores, por lo que deberás crear una aplicación de Firebase y configurar el servicio firestore, además debes agregar el objeto de configuración que proporciona Firebase para conectar la aplicación, para ello crea el archivo src/environments/firebase.environment.ts, y agrega la siguiente configuración:
+```
+export const firebaseConfig = {
+  firebaseConfig: {
+    apiKey: 'tu-api-key',
+    authDomain: 'dominio-app.com',
+    projectId: 'tu-project-id',
+    storageBucket: 'storage-bucket',
+    messagingSenderId: 'message-sender',
+    appId: 'app-id',
+    measurementId: 'measurement-id',
+  },
+};
+```
+### Pre-requisitos 📋
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+* [Node JS](https://nodejs.org/en/)
+* [Angular CLI](https://cli.angular.io)
+### Instalación 🔧
+En la raíz del proyecto:
+```
+ng serve -o
+```
+Para levantar la aplicación en la dirección por defecto: http://localhost:4200
+## Despliegue 📦
+En la raíz del proyecto ejecuta:
+```
+ng build --prod
+```
+Los archivos estáticos para desplegar a tu servidor se generarán en el directorio dist/tramos-horarios/
 
-## Development server
+## Construido con 🛠️
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* [Angular 11](https://cli.angular.io) - El framework web usado para frontend
+* [Node Package Manager](https://nodejs.org/en/) - Manejador de dependencias
