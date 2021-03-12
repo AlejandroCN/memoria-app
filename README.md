@@ -18,7 +18,6 @@ export const firebaseConfig = {
 };
 ```
 ### Pre-requisitos 📋
-
 * [Node JS](https://nodejs.org/en/)
 * [Angular CLI](https://cli.angular.io)
 ### Instalación 🔧
@@ -32,7 +31,7 @@ En la raíz del proyecto ejecuta:
 ```
 ng build --prod
 ```
-Los archivos estáticos para desplegar a tu servidor se generarán en el directorio dist/tramos-horarios/
+Los archivos estáticos para desplegar a tu servidor se generarán en el directorio dist/memoria-app/
 
 ## Construido con 🛠️
 
